@@ -11,5 +11,10 @@ class Category extends Model
     protected $fillable = [
         'name_ar',
         'name_en',
+        'active',
     ];
+    public function scopeSelection($query)
+    {
+        return $query->select('id', 'name_' . app()->getLocale() . ' as name');
+    }
 }
