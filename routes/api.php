@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'api'], function (){
+Route::group(['middleware' => ['api', 'checkPassword'],'namespace' => 'Api'], function (){
     Route::post('get-main-categories', [CategoriesController::class, 'index']);
 });
 
