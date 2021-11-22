@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\JWTAuth;
 
 class CheckAdminToken
 {
@@ -16,6 +17,13 @@ class CheckAdminToken
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        $user = null;
+        try {
+            $user = JWTAuth::parseToken()->authenticate();
+
+        }catch (\Exception $e)
+        {
+
+        }
     }
 }
