@@ -25,3 +25,8 @@ Route::group(['middleware' => ['api','checkPassword','changeLanguage'],'namespac
     Route::post('change-category-status', [CategoriesController::class, 'changeStatus']);
 });
 
+
+
+Route::group(['middleware' => ['api','checkPassword','changeLanguage','checkAdminToken:admin-api'], 'namespace' => 'Api'], function () {
+    Route::get('offers', [CategoriesController::class, 'index']);
+});
